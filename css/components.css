@@ -25,12 +25,14 @@
 
 /* Site Header as a Glass Panel */
 #site-header {
-    /* Extends .glass-panel implicitly via data-vib3-style if we map that in JS,
-       or explicitly by adding the class="glass-panel" to the HTML element.
-       For now, we assume VIB3 data-attributes might not directly add CSS classes,
-       so we can target by ID or add classes manually in HTML.
-       Let's assume for now we might add .glass-panel class to the HTML elements.
-    */
+    background-color: var(--glass-panel-background);
+    backdrop-filter: blur(var(--glass-blur-radius));
+    -webkit-backdrop-filter: blur(var(--glass-blur-radius));
+    border-radius: var(--border-radius-md);
+    border: var(--border-width-thin) solid var(--glass-border-color);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1),
+                inset 0 0 0 var(--border-width-thin) rgba(255,255,255,0.05);
+    transition: all 0.3s ease;
 }
 /* If #site-header uses data-vib3-style="glass-panel-primary",
    its VIB3 canvas will be its background. CSS handles the glass effect. */
@@ -38,7 +40,14 @@
 
 /* Primary Navigation as a Glass Panel */
 #primary-navigation {
-    /* similar to #site-header */
+    background-color: var(--glass-panel-background);
+    backdrop-filter: blur(var(--glass-blur-radius));
+    -webkit-backdrop-filter: blur(var(--glass-blur-radius));
+    border-radius: var(--border-radius-md);
+    border: var(--border-width-thin) solid var(--glass-border-color);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1),
+                inset 0 0 0 var(--border-width-thin) rgba(255,255,255,0.05);
+    transition: all 0.3s ease;
 }
 
 #primary-navigation ul li a {
@@ -253,4 +262,103 @@
 .sort-select option {
     background-color: var(--color-medium-grey); /* For dropdown options background */
     color: var(--color-white);
+}
+
+/* Glass Panel Shimmer Effect for loading states */
+.glass-panel-shimmer {
+    background-color: var(--glass-panel-background);
+    backdrop-filter: blur(var(--glass-blur-radius));
+    -webkit-backdrop-filter: blur(var(--glass-blur-radius));
+    border-radius: var(--border-radius-md);
+    border: var(--border-width-thin) solid var(--glass-border-color);
+    padding: var(--space-lg);
+    min-height: 200px;
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-panel-shimmer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.05),
+        transparent
+    );
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Enhanced Site Footer */
+#site-footer {
+    background-color: var(--glass-panel-background);
+    backdrop-filter: blur(var(--glass-blur-radius));
+    -webkit-backdrop-filter: blur(var(--glass-blur-radius));
+}
+
+/* Article Card Enhancements */
+.article-card,
+.article-card-placeholder {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.article-card:hover,
+.article-card-placeholder:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(var(--color-neon-cyan-rgb), 0.15);
+    border-color: var(--color-neon-cyan);
+}
+
+/* Featured Article Enhancements */
+#featured-article-placeholder {
+    margin-bottom: var(--space-xl);
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.featured-article {
+    width: 100%;
+}
+
+.featured-title {
+    font-size: var(--font-size-xxl);
+    margin-bottom: var(--space-md);
+}
+
+.featured-excerpt {
+    font-size: var(--font-size-lg);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+}
+
+.featured-meta {
+    display: flex;
+    gap: var(--space-md);
+    align-items: center;
+}
+
+.category-badge {
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-near-black);
+    text-transform: uppercase;
+}
+
+.article-date {
+    color: var(--color-light-grey);
+    font-size: var(--font-size-sm);
 }
