@@ -1,11 +1,11 @@
 /* digital-magazine/css/style.css */
 
 /* Import Design Tokens and Typography */
-@import url('_variables.css');
-@import url('_typography.css');
-@import url('_layout.css');
-@import url('_components.css');
-@import url('_effects.css');
+@import url('variables.css');
+@import url('typography.css');
+@import url('layout.css');
+@import url('components.css');
+@import url('effects.css');
 
 /* Basic Body Styling & Resets */
 *,
